@@ -11,7 +11,7 @@ This project has an emphasis on elevating version control skills, project manage
 # Project Summary
 
 Project Overview
-git 
+
 Goal: Develop a personal finance tracker that supports income/expense tracking, budgeting, report generation, localization, and visualizations of trends and categorized expenses.
 
 Technology Stack:
@@ -30,47 +30,47 @@ Sprints: Organized into multiple sprints, each focusing on different aspects:
 
 Local Development Setup
 IDE: Visual Studio Code with relevant extensions 
-•	Version Control: Git and GitHub (public repositories)
-•	Design: Figma
-•	Documentation: Markdown files within the repository
-•	Testing: Vite for frontend, pytest for backend, Cypress for end-to-end testing
+- 	Version Control: Git and GitHub (public repositories)
+-	Design: Figma
+-	Documentation: Markdown files within the repository
+-	Testing: Vite for frontend, pytest for backend, Cypress for end-to-end testing
 
 Software Architecture
 Frontend Components
-•	Login/Signup
-•	Dashboard
-•	Transaction Management: Income/Expense Form, Transaction List
-•	Budget Management: Budget Form, Budget Overview
-•	Reports: Report View, Download Button
-•	Graphs: Trend Graphs, Category Graphs
-•	Localization
-•	Settings
+-	Login/Signup
+-	Dashboard
+-	Transaction Management: Income/Expense Form, Transaction List
+-	Budget Management: Budget Form, Budget Overview
+-	Reports: Report View, Download Button
+-	Graphs: Trend Graphs, Category Graphs
+-	Localization
+-	Settings
 
 Backend Components
-•	Authentication: User Registration, User Login
-•	API Endpoints
-•	Transaction Management: Add/Edit/Delete Transaction, Get Transactions
-•	Budget Management: Set Budget, Get Budget
-•	Generation: Generate Report, Download Report
-•	Graph Data: Get Trend Data, Get Category Data
-•	Localization: Language Data
+-	Authentication: User Registration, User Login
+-	API Endpoints
+-	Transaction Management: Add/Edit/Delete Transaction, Get Transactions
+-	Budget Management: Set Budget, Get Budget
+-	Generation: Generate Report, Download Report
+-	Graph Data: Get Trend Data, Get Category Data
+-	Localization: Language Data
 
 Database Tables
-•	Users
-•	Transactions
-•	Budgets
-•	Localization
+-	Users
+-	Transactions
+-	Budgets
+-	Localization
 
 Monitoring and Debugging
-•	Local Logging: Use Python's built-in logging module
-Browser Developer Tools: Chrome DevTools for frontend debugging
+-	Local Logging: Use Python's built-in logging module
+- Browser Developer Tools: Chrome DevTools for frontend debugging
 
 SOLID Design Principles
-•	Single Responsibility Principle (SRP): Each class/module should have one responsibility.
-•	Open/Closed Principle (OCP): Classes should be open for extension but closed for modification.
-•	Liskov Substitution Principle (LSP): Subclasses should replace base classes without affecting functionality.
-•	Interface Segregation Principle (ISP): Clients should not depend on interfaces they do not use.
-•	Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules; both should depend on abstractions.
+-	Single Responsibility Principle (SRP): Each class/module should have one responsibility.
+-	Open/Closed Principle (OCP): Classes should be open for extension but closed for modification.
+-	Liskov Substitution Principle (LSP): Subclasses should replace base classes without affecting functionality.
+-	Interface Segregation Principle (ISP): Clients should not depend on interfaces they do not use.
+-	Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules; both should depend on abstractions.
 
 Project Structure
 Frontend Directory Structure
