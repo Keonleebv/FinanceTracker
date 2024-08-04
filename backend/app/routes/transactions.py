@@ -1,6 +1,6 @@
 # backend/app/routes/transactions.py
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, send_file
 from app.services.transactionService import TransactionService
 from app.repositories.SQLite import SQLiteTransactionRepository
 
@@ -19,3 +19,9 @@ def add_transaction():
 def get_transactions():
     transactions = transaction_service.get_transactions()
     return jsonify(transactions), 200
+
+@transactions_bp.route("/export_transactions", methods=["GET"])
+def export_transactions():
+    file_name = 'transactions.csv'
+    transaction_service.export_transactions_to_csv(file_name)
+    return send_file(file_name, as_attachment=True)

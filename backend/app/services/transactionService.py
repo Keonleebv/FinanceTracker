@@ -1,5 +1,6 @@
 # backend/app/services/transaction_service.py
 
+import pandas as pd
 from app.models.transaction import Transaction
 from app.repositories.transactionRepo import transactionRepo
 
@@ -13,3 +14,8 @@ class TransactionService:
     
     def get_transactions(self):
         return self.transaction_repo.get_transactions()
+
+    def export_transactions_to_csv(self, file_name='transactions.csv'):
+        transactions = self.get_transactions()
+        df = pd.DataFrame(transactions, columns=["ID", "Date", "Description", "Category", "Amount"])
+        df.to_csv(file_name, index=False)
