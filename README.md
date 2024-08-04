@@ -14,6 +14,11 @@ Project Overview
 
 Goal: Develop a personal finance tracker that supports income/expense tracking, budgeting, report generation, localization, and visualizations of trends and categorized expenses.
 
+# How to use
+
+
+
+
 Technology Stack:
 •	Frontend: React with TypeScript
 •   Backend: Flask or Django with Python
@@ -120,4 +125,4 @@ Backend Directory Structure
 |   |-- main.py
 |-- requirements.txt
 
-Describe how to use your project here.
+
