@@ -14,6 +14,12 @@ class TransactionService:
     
     def get_transactions(self):
         return self.transaction_repo.get_transactions()
+    
+    def calculate_totals(self):
+        transactions = self.get_transactions()
+        income = sum(t[4] for t in transactions if t[3] == "Income")
+        expenses = sum(t[4] for t in transactions if t[3] == "Expense")
+        return income, expenses
 
     def export_transactions_to_csv(self, file_name='transactions.csv'):
         transactions = self.get_transactions()
