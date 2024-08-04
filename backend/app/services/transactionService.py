@@ -24,4 +24,4 @@ class TransactionService:
     def export_transactions_to_csv(self, file_name='transactions.csv'):
         transactions = self.get_transactions()
         df = pd.DataFrame(transactions, columns=["ID", "Date", "Description", "Category", "Amount"])
-        df.to_csv(file_name, index=False)
+        df.to_csv(file_name, index=False, float_format='%.2f')
