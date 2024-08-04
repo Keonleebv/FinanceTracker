@@ -50,8 +50,8 @@ class TestTransactionService(unittest.TestCase):
             lines = file.readlines()
             self.assertEqual(len(lines), 3)  # Header + 2 transactions
             self.assertEqual(lines[0].strip(), "ID,Date,Description,Category,Amount")
-            self.assertEqual(lines[1].strip(), "1,2024-07-25,Salary,Income,1000")
-            self.assertEqual(lines[2].strip(), "2,2024-07-26,Groceries,Expense,-200")
+            self.assertEqual(lines[1].strip(), "1,2024-07-25,Salary,Income,1000.00")
+            self.assertEqual(lines[2].strip(), "2,2024-07-26,Groceries,Expense,-200.00")
 
         # Clean up
         os.remove(file_name)
