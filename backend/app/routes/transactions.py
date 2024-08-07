@@ -1,8 +1,8 @@
 # backend/app/routes/transactions.py
 
 from flask import Blueprint, request, jsonify, send_file
-from app.services.transactionService import TransactionService
-from app.repositories.SQLite import SQLiteTransactionRepository
+from backend.app.services.transaction_service import TransactionService
+from app.repositories.sqlite import SQLiteTransactionRepository
 
 # Set up the Blueprint and repository/service instances
 transactions_bp = Blueprint('transactions', __name__)
