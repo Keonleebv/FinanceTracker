@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+
 from app.services.transaction_service import TransactionService
 from app.repositories.sqlite import SQLiteTransactionRepository
 
@@ -18,3 +19,9 @@ def add_transaction():
 def get_transactions():
     transactions = transaction_service.get_transactions()
     return jsonify(transactions), 200
+
+@transactions_bp.route("/export_to_csv", methods=["GET"])
+def export_to_csv():
+    file_name = "transactions.csv"
+    transaction_service.export_transactions_to_csv(file_name)
+    return jsonify({"message": f"Transactions exported to {file_name}"}), 200
