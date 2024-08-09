@@ -9,5 +9,4 @@ app.register_blueprint(transactions_bp, url_prefix='/')
 if __name__ == "__main__":
     app.run(debug=True)
 
-with app.test_request_context():
-    print(app.url_map)
+
