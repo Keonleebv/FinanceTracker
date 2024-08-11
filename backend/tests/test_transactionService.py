@@ -2,12 +2,12 @@ import sys
 import os
 import unittest
 
-# Add the 'backend' directory to sys.path to import the 'app' package
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# # Add the 'backend' directory to sys.path to import the 'app' package
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Correct import paths based on directory structure
 from app.services.transaction_service import TransactionService
-from app.repositories.sqlite import SQLiteTransactionRepository
+from app.repositories.SQLiteTransactionRepo import SQLiteTransactionRepository
 
 class TestTransactionService(unittest.TestCase):
     def setUp(self):
