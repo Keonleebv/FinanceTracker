@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 
 from app.services.transaction_service import TransactionService
-from app.repositories.sqlite import SQLiteTransactionRepository
+from app.repositories.SQLiteTransactionRepo import SQLiteTransactionRepository
 
 transactions_bp = Blueprint('transactions', __name__)
 
