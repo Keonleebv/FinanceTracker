@@ -1,5 +1,3 @@
-# backend/app/services/transaction_service.py
-
 import pandas as pd
 from app.models.transaction import Transaction
 from app.repositories.transactionRepo import transactionRepo
@@ -7,14 +5,21 @@ from app.repositories.transactionRepo import transactionRepo
 class TransactionService:
     def __init__(self, transaction_repo: transactionRepo):
         self.transaction_repo = transaction_repo
-    
+
     def add_transaction(self, date, description, category, amount):
+        # Determine the category type based on the amount
+        if amount > 0:
+            category_type = 'Income'
+        else:
+            category_type = 'Expense'
+
+        # Add transaction
         transaction = Transaction(date, description, category, amount)
         self.transaction_repo.add_transaction(transaction)
-    
+
     def get_transactions(self):
         return self.transaction_repo.get_transactions()
-    
+
     def calculate_totals(self):
         transactions = self.get_transactions()
         income = sum(t[4] for t in transactions if t[3] == "Income")

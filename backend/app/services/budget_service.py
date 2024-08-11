@@ -23,8 +23,7 @@ class BudgetService:
     def compare_budget(self):
         transactions = self.transaction_service.get_transactions()
         budgets = self.get_budgets()
-
-        # Calculate total spending per category
+        
         spending_by_category = {}
         for transaction in transactions:
             category = transaction[3]
@@ -33,23 +32,24 @@ class BudgetService:
                 spending_by_category[category] += amount
             else:
                 spending_by_category[category] = amount
-
-        # Compare spending to budgets
-        comparison = []
+        
+        comparison = {}
         for budget in budgets:
             category = budget[1]
             budget_amount = budget[2]
             spent = spending_by_category.get(category, 0)
-            remaining = budget_amount - spent
-            comparison.append({
-                "Category": category,
-                "Budgeted Amount": budget_amount,
-                "Spent Amount": spent,
-                "Remaining Budget": remaining
-            })
+            comparison[category] = {
+                "budgeted": budget_amount,
+                "spent": spent,
+                "remaining": budget_amount - spent
+            }
 
-        return pd.DataFrame(comparison)
-
-    def export_budgets_to_csv(self, file_name):
-        comparison_df = self.compare_budget()
-        comparison_df.to_csv(file_name, index=False, float_format='%.2f')
+        return comparison
+    
+    def export_budgets_to_csv(self, file_name='budgets_comparison.csv'):
+        comparison = self.compare_budget()
+        df = pd.DataFrame([
+            {"Category": cat, "Budgeted": data["budgeted"], "Spent": data["spent"], "Remaining": data["remaining"]}
+            for cat, data in comparison.items()
+        ])
+        df.to_csv(file_name, index=False, float_format='%.2f')

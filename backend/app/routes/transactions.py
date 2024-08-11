@@ -12,8 +12,13 @@ transaction_service = TransactionService(transaction_repo)
 @transactions_bp.route("/add_transaction", methods=["POST"])
 def add_transaction():
     data = request.json
-    transaction_service.add_transaction(data["date"], data["description"], data["category"], data["amount"])
-    return jsonify({"message": "Transaction added successfully"}), 201
+    try:
+        transaction_service.add_transaction(data["date"], data["description"], data["category"], data["amount"])
+        return jsonify({"message": "Transaction added successfully"}), 201
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    except Exception as e:
+        return jsonify({"error": "An error occurred while adding the transaction."}), 500
 
 @transactions_bp.route("/transactions", methods=["GET"])
 def get_transactions():

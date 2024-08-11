@@ -1,13 +1,8 @@
-import sys
-import os
-
-# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from app.services.transaction_service import TransactionService
 from app.repositories.SQLiteTransactionRepo import SQLiteTransactionRepository
 
 # Initialize the repository and service
-repo = SQLiteTransactionRepository("transactions.db")
+repo = SQLiteTransactionRepository(":memory:")
 service = TransactionService(repo)
 
 # Add some sample transactions

@@ -25,11 +25,11 @@ def get_budgets():
 
 @budgets_bp.route("/compare_budget", methods=["GET"])
 def compare_budget():
-    comparison_df = budget_service.compare_budget()
-    return comparison_df.to_json(orient='records'), 200
+    comparison = budget_service.compare_budget()
+    return jsonify(comparison), 200
 
 @budgets_bp.route("/export_budgets_to_csv", methods=["GET"])
 def export_budgets_to_csv():
-    file_name = "budgets_comparison_export.csv"
+    file_name = "budgets_comparison.csv"
     budget_service.export_budgets_to_csv(file_name)
     return jsonify({"message": f"Budgets exported to {file_name} with comparisons"}), 200

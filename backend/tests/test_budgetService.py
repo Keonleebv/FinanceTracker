@@ -35,19 +35,20 @@ class TestBudgetService(unittest.TestCase):
         self.transaction_service.add_transaction("2024-08-10", "Grocery Shopping", "Food", 150)
         self.transaction_service.add_transaction("2024-08-11", "Movie Ticket", "Entertainment", 50)
         
+        # Get the comparison
         comparison = self.budget_service.compare_budget()
         
         # Test the comparison results
-        food_comparison = comparison[comparison['Category'] == 'Food'].iloc[0]
-        entertainment_comparison = comparison[comparison['Category'] == 'Entertainment'].iloc[0]
+        food_comparison = comparison["Food"]
+        entertainment_comparison = comparison["Entertainment"]
 
-        self.assertEqual(food_comparison['Budgeted Amount'], 500)
-        self.assertEqual(food_comparison['Spent Amount'], 150)
-        self.assertEqual(food_comparison['Remaining Budget'], 350)
+        self.assertEqual(food_comparison["budgeted"], 500)
+        self.assertEqual(food_comparison["spent"], 150)
+        self.assertEqual(food_comparison["remaining"], 350)
 
-        self.assertEqual(entertainment_comparison['Budgeted Amount'], 200)
-        self.assertEqual(entertainment_comparison['Spent Amount'], 50)
-        self.assertEqual(entertainment_comparison['Remaining Budget'], 150)
+        self.assertEqual(entertainment_comparison["budgeted"], 200)
+        self.assertEqual(entertainment_comparison["spent"], 50)
+        self.assertEqual(entertainment_comparison["remaining"], 150)
 
     def test_export_budgets_to_csv(self):
         # Add budgets
@@ -69,12 +70,12 @@ class TestBudgetService(unittest.TestCase):
         with open(file_name, 'r') as file:
             lines = file.readlines()
             self.assertEqual(len(lines), 3)  # Header + 2 budgets
-            self.assertEqual(lines[0].strip(), "Category,Budgeted Amount,Spent Amount,Remaining Budget")
+            self.assertEqual(lines[0].strip(), "Category,Budgeted,Spent,Remaining")
             self.assertEqual(lines[1].strip(), "Food,500.00,150.00,350.00")
             self.assertEqual(lines[2].strip(), "Entertainment,200.00,50.00,150.00")
         
-        # Clean up
-        os.remove(file_name)
+        # # Clean up
+        # os.remove(file_name)
 
 if __name__ == "__main__":
     unittest.main()

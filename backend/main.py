@@ -1,4 +1,5 @@
 from flask import Flask
+
 from app.routes.transactions import transactions_bp
 from app.routes.budgets import budgets_bp
 from app.repositories.SQLiteBudgetRepo import SQLiteBudgetRepository

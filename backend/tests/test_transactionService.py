@@ -1,13 +1,10 @@
-import sys
 import os
 import unittest
-
-# # Add the 'backend' directory to sys.path to import the 'app' package
-# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Correct import paths based on directory structure
 from app.services.transaction_service import TransactionService
 from app.repositories.SQLiteTransactionRepo import SQLiteTransactionRepository
+
 
 class TestTransactionService(unittest.TestCase):
     def setUp(self):
@@ -46,7 +43,7 @@ class TestTransactionService(unittest.TestCase):
         file_name = "test_transactions.csv"
         self.service.export_transactions_to_csv(file_name)
 
-        # Check if file exists
+        # Check if the file exists
         self.assertTrue(os.path.exists(file_name))
 
         # Verify file content
