@@ -13,7 +13,7 @@ transaction_service = TransactionService(transaction_repo)
 def add_transaction():
     data = request.json
     try:
-        transaction_service.add_transaction(data["date"], data["description"], data["category"], data["amount"])
+        transaction_service.add_transaction(data["description"], data["category"], data["amount"])
         return jsonify({"message": "Transaction added successfully"}), 201
     except ValueError as e:
         return jsonify({"error": str(e)}), 400

@@ -24,7 +24,7 @@ Goal: Develop a personal finance tracker that supports income/expense tracking, 
 
 ## Getting Started
 
-These instructions explain how to set up the project and use what has been developed so far
+These instructions explain how to set up the project and use what has been developed so far.
 
 ### Installation
 

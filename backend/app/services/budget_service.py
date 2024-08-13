@@ -26,18 +26,18 @@ class BudgetService:
         
         spending_by_category = {}
         for transaction in transactions:
-            category = transaction[3]
-            amount = transaction[4]
-            if category in spending_by_category:
-                spending_by_category[category] += amount
+            subcategory = transaction[4]  # Using subcategory now
+            amount = transaction[5]
+            if subcategory in spending_by_category:
+                spending_by_category[subcategory] += amount
             else:
-                spending_by_category[category] = amount
-        
+                spending_by_category[subcategory] = amount
+
         comparison = {}
         for budget in budgets:
             category = budget[1]
             budget_amount = budget[2]
-            spent = spending_by_category.get(category, 0)
+            spent = abs(spending_by_category.get(category, 0))
             comparison[category] = {
                 "budgeted": budget_amount,
                 "spent": spent,
@@ -45,7 +45,7 @@ class BudgetService:
             }
 
         return comparison
-    
+        
     def export_budgets_to_csv(self, file_name='budgets_comparison.csv'):
         comparison = self.compare_budget()
         df = pd.DataFrame([

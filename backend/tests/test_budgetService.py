@@ -1,5 +1,7 @@
 import unittest
 import os
+from datetime import datetime
+
 from app.services.budget_service import BudgetService
 from app.repositories.SQLiteBudgetRepo import SQLiteBudgetRepository
 from app.services.transaction_service import TransactionService
@@ -31,9 +33,9 @@ class TestBudgetService(unittest.TestCase):
         self.budget_service.add_budget("Food", 500)
         self.budget_service.add_budget("Entertainment", 200)
         
-        # Add transactions
-        self.transaction_service.add_transaction("2024-08-10", "Grocery Shopping", "Food", 150)
-        self.transaction_service.add_transaction("2024-08-11", "Movie Ticket", "Entertainment", 50)
+        # Add transactions with specific categories and subcategories
+        self.transaction_service.add_transaction("Grocery Shopping", "Expense", "Food", 150)
+        self.transaction_service.add_transaction("Movie Ticket", "Expense", "Entertainment", 50)
         
         # Get the comparison
         comparison = self.budget_service.compare_budget()
@@ -56,8 +58,8 @@ class TestBudgetService(unittest.TestCase):
         self.budget_service.add_budget("Entertainment", 200)
         
         # Add transactions
-        self.transaction_service.add_transaction("2024-08-10", "Grocery Shopping", "Food", 150)
-        self.transaction_service.add_transaction("2024-08-11", "Movie Ticket", "Entertainment", 50)
+        self.transaction_service.add_transaction("Grocery Shopping", "Expense", "Food", 150)
+        self.transaction_service.add_transaction("Movie Ticket", "Expense", "Entertainment", 50)
         
         # Export to CSV
         file_name = "test_budgets_export.csv"
@@ -73,9 +75,9 @@ class TestBudgetService(unittest.TestCase):
             self.assertEqual(lines[0].strip(), "Category,Budgeted,Spent,Remaining")
             self.assertEqual(lines[1].strip(), "Food,500.00,150.00,350.00")
             self.assertEqual(lines[2].strip(), "Entertainment,200.00,50.00,150.00")
-        
-        # # Clean up
-        # os.remove(file_name)
+
+            # Clean up
+            # os.remove(file_name)
 
 if __name__ == "__main__":
     unittest.main()

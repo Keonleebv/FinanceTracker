@@ -18,6 +18,7 @@ class SQLiteTransactionRepository(transactionRepo):
                     date TEXT,
                     description TEXT,
                     category TEXT,
+                    subcategory TEXT,
                     amount REAL
                 )
                 """
@@ -26,8 +27,8 @@ class SQLiteTransactionRepository(transactionRepo):
     def add_transaction(self, transaction: Transaction):
         with self.connection:
             self.connection.execute(
-                "INSERT INTO transactions (date, description, category, amount) VALUES (?, ?, ?, ?)",
-                (transaction.date, transaction.description, transaction.category, transaction.amount)
+                "INSERT INTO transactions (date, description, category, subcategory, amount) VALUES (?, ?, ?, ?, ?)",
+                (transaction.date, transaction.description, transaction.category, transaction.subcategory, transaction.amount)
             )
 
     def get_transactions(self):
