@@ -11,6 +11,7 @@ class SQLiteTransactionRepository(transactionRepo):
     
     def create_table(self):
         with self.connection:
+            self.connection.execute("DROP TABLE IF EXISTS transactions")  # Drop the table if it exists
             self.connection.execute(
                 """
                 CREATE TABLE IF NOT EXISTS transactions (
@@ -18,7 +19,7 @@ class SQLiteTransactionRepository(transactionRepo):
                     date TEXT,
                     description TEXT,
                     category TEXT,
-                    subcategory TEXT,
+                    subcategory TEXT, 
                     amount REAL
                 )
                 """
